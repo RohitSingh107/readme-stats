@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import io
 
 from . import githubApi
-# from tkinter import *
+
 
 app = FastAPI()
 
@@ -17,4 +17,4 @@ def index():
 
 @app.get('/bar')
 def barPlot():
-    return Response(content=githubApi.bar_plot(), media_type='image/png')
+    return Response(content=githubApi.bar_plot(), media_type='image/svg+xml')

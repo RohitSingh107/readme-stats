@@ -1,13 +1,21 @@
 # An example to get the remaining rate limit using the Github GraphQL API.
 
+from lib2to3.pgen2 import token
 from PIL import Image
 import requests
 import json
 import matplotlib.pyplot as plt
 import io
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 # from tkinter import *
-headers = {"Authorization": "Bearer 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"}
+token = os.getenv('PAT')
+# print(token)
+headers = {"Authorization": "Bearer {}".format(token)}
 
 
 # A simple function to use requests.post to make the API call. Note the json= section.
@@ -101,7 +109,7 @@ def bar_plot():
         lang_count.keys()), rotation='vertical')
 
     bytes_image = io.BytesIO()
-    plt.savefig(bytes_image, format='png')
+    plt.savefig(bytes_image, format='svg')
     bytes_image.seek(0)
     c = bytes_image.read()
     return c
